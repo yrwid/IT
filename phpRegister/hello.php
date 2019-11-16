@@ -4,7 +4,7 @@
 	
 	if (!isset($_SESSION['udanarejestracja']))
 	{
-		header('Location: index.php');
+		header('Location: Location: ../indexPage/index.php');
 		exit();
 	}
 	else

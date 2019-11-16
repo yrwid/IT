@@ -39,6 +39,10 @@
 				$_SESSION['id'] = $wiersz['id'];
 				$_SESSION['login'] = $wiersz['login'];
 				$_SESSION['email'] = $wiersz['email'];
+				$_SESSION['fName'] = $wiersz['fName'];
+				$_SESSION['lName'] = $wiersz['lName'];
+				$_SESSION['country'] = $wiersz['country'];
+				$_SESSION['town'] = $wiersz['town'];
 				
 				unset($_SESSION['blad']);
 				$rezultat->free_result();

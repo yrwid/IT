@@ -108,7 +108,7 @@
 				{
 					//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
 					
-					if ($polaczenie->query("INSERT INTO users VALUES (NULL, '$nick', '$haslo_hash', '$email')"))
+					if ($polaczenie->query("INSERT INTO users VALUES (NULL, '$nick', '$haslo_hash', '$email',NULL,NULL,NULL,NULL)"))
 					{
 						$_SESSION['udanarejestracja']=true;
 						header('Location: hello.php');

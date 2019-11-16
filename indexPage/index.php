@@ -32,8 +32,9 @@
 				<?php 
 	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
 	{
-		echo "<p>Witaj ".$_SESSION['login'].'!</p>';
+		//echo "<p>Witaj ".$_SESSION['login'].'!</p>';
 		//echo "<p><b>E-mail</b>: ".$_SESSION['email'];
+		echo "<p>Hello, <a href=\"../profilePage/profile.php\">".$_SESSION['login'].'</a></p>';
 	
 	}
    
