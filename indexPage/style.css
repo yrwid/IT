@@ -91,6 +91,18 @@ body
 	text-align: center;
 } 
 
+.clock 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #262626;
+    font-size: 60px;
+    font-family: Orbitron;
+    letter-spacing: 7px;
+}
+
 
 
 .tile5
@@ -103,20 +115,6 @@ body
 	float: left;
 	text-align: center;
 } 
-
-
-
-.clock{
-	width: 980px;
-	//font-family: "Times New Roman", Times, serif;
-	margin-left: 730px;
-	//margin-top: 2px;
-	text-align: center;
-	//background-color: #00264d;
-	//color: #803300;
-	font-size: 90px;
-}
-
 
 .content{
 	 font-style: italic;
