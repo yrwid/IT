@@ -97,10 +97,26 @@ body
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    color: #262626;
+    color: #ff0000;
     font-size: 60px;
     font-family: Orbitron;
     letter-spacing: 7px;
+}
+
+#MyClockDisplay
+{
+	position: absolute;
+    top: 55%;
+    left: 60%;
+    transform: translateX(-50%) translateY(-50%);
+    color: #a35700;
+    font-size: 90px;
+    font-family: Orbitron;
+	font-weight: bold;
+    letter-spacing: 7px;
+	background-color:rgb(0,0,0,0.8);
+	//border: 8px solid white;
+    border-radius: 50px;
 }
 
 

@@ -91,7 +91,7 @@ EOT;
 				With us you are able to achieve each of these things and even more! </p>
 			</div>
 			
-			<div class="clock" id="MyClockDisplay" onload="showTime()"></div>
+			<div class="clock" id="MyClockDisplay" onload="showTime()">
 			
 			<script>
 			function showTime(){
@@ -124,6 +124,7 @@ EOT;
 
 		showTime();
 		</script>
+		</div>
 			
 			
 			<div class="socials"><a style="text-decoration:none; color:#096506;"  href='https://329elearning.aei.polsl.pl/tiwordpress2019/s121/'  >IT Blog</a></div> 
