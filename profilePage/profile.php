@@ -110,8 +110,8 @@ EOT;
 					echo "<h1 style = \"text-align: center;\">Hey, <span style =\"color: #f5c001\">".$_SESSION['login'].'</span>!</h1>';
 					//echo "<br></br>";
 					echo "<p style = \"font-size:40px\"><b>Here is your data:</b></p>";
-					echo "<p><b>Nickname: &emsp;".$_SESSION['login'].'</p>';
-					echo "<p><b>E-mail:</b> &emsp;".$_SESSION['email'].'</p>';
+					echo "<p><b>Nickname: &emsp;<span style=\"color:#949494\">".$_SESSION['login'].'</span></p>';
+					echo "<p><b>E-mail:</b> &emsp;<span style=\"color:#949494\">".$_SESSION['email'].'</span></p>';
 					//echo "<p>First name: &emsp;".$_SESSION['fName'].'<button style=\"float: right;width: 10%;margin-right:10px;background-color: #e68a00;\">Change</button></p>';
 					echo "<p><b>First name</b>: &emsp;".$_SESSION['fName'].'';
 					//echo "<button style=\"float: right;width: 10%;margin-right:10px;background-color: #e68a00;\">Change</button></p>";
@@ -122,6 +122,8 @@ EOT;
 					echo "<button id=\"p4\" onclick=\"document.getElementById('id04').style.display='block'\">Change Country</button></p>";
 					echo "<p><b>Town:</b> &emsp;".$_SESSION['town'].'';
 					echo "<button id=\"p4\" onclick=\"document.getElementById('id05').style.display='block'\">Change Town</button></p>";
+					echo "<p><b><span style=\"color:#949494;font-size:30px;\">If you want to change password:</span></b> &emsp;";
+					echo "<button id=\"p4\" style=\"background-color:#ff0000;\" onclick=\"document.getElementById('id06').style.display='block' \">Change password</button></p>";
 					echo "<hr></hr>";
 
 					
@@ -134,7 +136,7 @@ EOT;
 						
 				//	 <p> Our team consists of experienced programmers, masters in creating hardware and great management staff. Our foreign clients are proud to name our company. our products are used in many home appliances, thanks to which thousands of people start the day with a smile every day
 						//</p>
-				
+				////
 				
 				
 				
@@ -258,20 +260,43 @@ EOT;
 				  </form>
 			</div>
 			
+			<!--Password button-->
+			<div id="id06" class="modal">
+				  <!-- Modal Content -->
+				  <form class="modal-content animate" action="PasswordChange.php" method="post">
+					<div class="container" style="background-color:#292929">
+					  <label for="password"><b>Current password</b></label>
+					  <input type="password" placeholder="Enter current password" name="password" required>
+					  <label for="password_new"><b>New password</b></label>
+					  <input type="password" placeholder="Enter new password" name="password_new" required>
+					  <label for="password_new2"><b>Confirm password</b></label>
+					  <input type="password" placeholder="Confirm password" name="password_new2" required>
+					  <button type="submit">Submit</button>
+					</div>
+					<div class="container" style="background-color:#171717">
+					  <button type="button" onclick="document.getElementById('id06').style.display='none'" class="cancelbtn">Cancel</button>
+					  <?php
+						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+						?>
+					</div>
+				  </form>
+			</div>
 				<script> 
 				// Get the modal
 				var modal2 = document.getElementById('id02');
 				var modal3 = document.getElementById('id03');
 				var modal4 = document.getElementById('id04');
 				var modal5 = document.getElementById('id05');
+				var modal6 = document.getElementById('id06');
 
 				// When the user clicks anywhere outside of the modal, close it
 				window.onclick = function(event) {
-				  if ((event.target == modal2)||(event.target == modal3)||(event.target == modal4)||(event.target == modal5)) {
+				  if ((event.target == modal2)||(event.target == modal3)||(event.target == modal4)||(event.target == modal5)||(event.target == modal6)) {
 					modal2.style.display = "none";
 					modal3.style.display = "none";
 					modal4.style.display = "none";
 					modal5.style.display = "none";
+					modal6.style.display = "none";
 				  }
 				  
 				}
