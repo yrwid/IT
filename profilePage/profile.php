@@ -1,6 +1,7 @@
 <?php
 
 	session_start();
+	
 	/*if (!(isset($_SESSION['zalogowany'])) && !($_SESSION['zalogowany']==true))
 	{
 		header('Location: ../indexPage/index.php');
@@ -123,8 +124,9 @@ EOT;
 					echo "<p><b>Town:</b> &emsp;".$_SESSION['town'].'';
 					echo "<button id=\"p4\" onclick=\"document.getElementById('id05').style.display='block'\">Change Town</button></p>";
 					echo "<p><b><span style=\"color:#949494;font-size:30px;\">If you want to change password:</span></b> &emsp;";
-					echo "<button id=\"p4\" style=\"background-color:#ff0000;\" onclick=\"document.getElementById('id06').style.display='block' \">Change password</button></p>";
+					echo "<button id=\"p4\" style=\"background-color:#ff0000;\" onclick=\"document.getElementById('id06').style.display='block' \">Change password</button>";if(isset($_SESSION['blad2'])) echo $_SESSION['blad2'];echo"</p>";
 					echo "<hr></hr>";
+					
 
 					
 					
@@ -144,6 +146,24 @@ EOT;
 				}
 	   
 	?>
+	
+	<?php
+	if(isset($_SESSION['changed_password'])){
+	echo"<script language='javascript'>
+	alert('You succesfully changed your password!');
+</script>
+";
+	unset($_SESSION['changed_password']);
+	}
+	
+	?>
+	<!-- 
+autor: Marco Barría 
+https://twitter.com/marco_bf
+-->
+
+<div class="hoja">M&M</div>
+	
 </div>
 			<div class="socials"><a style="text-decoration:none; color:#096506;"  href='https://329elearning.aei.polsl.pl/tiwordpress2019/s121/'  >IT Blog</a></div>
 			
@@ -200,7 +220,7 @@ EOT;
 					<div class="container" style="background-color:#171717">
 					  <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
 					  <?php
-						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+						//if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
 						?>
 					</div>
 				  </form>
@@ -218,7 +238,7 @@ EOT;
 					<div class="container" style="background-color:#171717">
 					  <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
 					  <?php
-						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+						//if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
 						?>
 					</div>
 				  </form>
@@ -236,7 +256,7 @@ EOT;
 					<div class="container" style="background-color:#171717">
 					  <button type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button>
 					  <?php
-						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+						//if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
 						?>
 					</div>
 				  </form>
@@ -254,7 +274,7 @@ EOT;
 					<div class="container" style="background-color:#171717">
 					  <button type="button" onclick="document.getElementById('id05').style.display='none'" class="cancelbtn">Cancel</button>
 					  <?php
-						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+						//if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
 						?>
 					</div>
 				  </form>
@@ -276,7 +296,7 @@ EOT;
 					<div class="container" style="background-color:#171717">
 					  <button type="button" onclick="document.getElementById('id06').style.display='none'" class="cancelbtn">Cancel</button>
 					  <?php
-						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+					  if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
 						?>
 					</div>
 				  </form>

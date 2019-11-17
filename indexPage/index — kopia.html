@@ -1,10 +1,3 @@
-<?php
-
-	session_start();
-	
-
-?>
-
 <!DOCTYPE HTML>
 <html lang="pl">
   <head>
@@ -29,46 +22,18 @@
  						 <span style="color: #025D45">Company</span> 
 						<div style="clear:both;"></div>
 				</div>
-				<?php /*
-	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
-	{
-		//echo "<p>Witaj ".$_SESSION['login'].'!</p>';
-		//echo "<p><b>E-mail</b>: ".$_SESSION['email'];
-		//echo "<p>Hello, <a href=\"../profilePage/profile.php\">".$_SESSION['login'].'</a></p>';
-		//echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
-	
-	}*/
-   
-?>
 			</div>
-			
-			
 			<!-- TU DODAŁEM-->
-			<?php
-							if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
-							{
-							echo <<< EOT
-<button id="p3" style="float: right;width: 10%;margin-right:10px;background-color: #e68a00;" onclick="window.location.href = '../phpRegister/logout.php'">Log Out</button>
-EOT;
-							echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
-							unset($_SESSION['blad']);
-							unset($_SESSION['blad2']);
-							}
-							else
-							{
-								echo"<button id=\"p1\" onclick=\"document.getElementById('id01').style.display='block'\">Log In</button>";
-								echo"<button id=\"p2\" onclick=\"window.location.href = '../phpRegister/register.php'\">Sign Up</button>";
-							}
-						?>
-						
+			<button id="p1" onclick="document.getElementById('id01').style.display='block'">Login</button>
+			<button id="p2" onclick="window.location.href = '../registerPage/register.html'">Sign Up</button>
 			<!-- KONIEC DODAWANIA-->
 			<div class="nav">
 				<ol>
-				  <li><a href="index.php">Main page</a></li>
-				  <li><a href="../aboutPage/about.php">About us</a></li>
-				  <li><a href="../productPage/prod.php">Our product</a></li>
-				  <li><a href="../softwarePage/soft.php">Software</a></li>
-				  <li><a href="../contactPage/contact.php">Contact us</a></li>
+				  <li><a href="index.html">Main page</a></li>
+				  <li><a href="../aboutPage/about.html">About us</a></li>
+				  <li><a href="../productPage/prod.html">Our product</a></li>
+				  <li><a href="../softwarePage/soft.html">Software</a></li>
+				  <li><a href="../contactPage/contact.html">Contact us</a></li>
 				</ol>
 			</div>
 			<div class="square">
@@ -95,40 +60,9 @@ EOT;
 				With us you are able to achieve each of these things and even more! </p>
 			</div>
 			
-			<div class="clock" id="MyClockDisplay" onload="showTime()">
-			
-			<script>
-			function showTime(){
-			var date = new Date();
-			var h = date.getHours(); // 0 - 23
-			var m = date.getMinutes(); // 0 - 59
-			var s = date.getSeconds(); // 0 - 59
-			var session = "AM";
-    
-			if(h == 0){
-				h = 12;
-			}
-    
-			if(h > 12){
-				h = h - 12;
-				session = "PM";
-			}
-    
-			h = (h < 10) ? "0" + h : h;
-			m = (m < 10) ? "0" + m : m;
-			s = (s < 10) ? "0" + s : s;
-    
-			var time = h + ":" + m + ":" + s + " " + session;
-			document.getElementById("MyClockDisplay").innerText = time;
-			document.getElementById("MyClockDisplay").textContent = time;
-    
-			setTimeout(showTime, 1000);
-    
-		}
-
-		showTime();
-		</script>
-		</div>
+			<div class="clock">
+			<p>   12:00:00  </p>
+			</div>
 			
 			
 			<div class="socials"><a style="text-decoration:none; color:#096506;"  href='https://329elearning.aei.polsl.pl/tiwordpress2019/s121/'  >IT Blog</a></div> 
@@ -140,15 +74,15 @@ EOT;
 				<!-- The Modal -->
 				<div id="id01" class="modal">
 				  <!-- Modal Content -->
-				  <form class="modal-content animate" action="../phpRegister/login.php" method="post">
+				  <form class="modal-content animate">
 					<div class="container" style="background-color:#292929">
 					  <label for="uname"><b>Username</b></label>
-					  <input type="text" placeholder="Enter Username" name="login" required>
+					  <input type="text" placeholder="Enter Username" name="uname" required>
 
 					  <label for="psw"><b>Password</b></label>
-					  <input type="password" placeholder="Enter Password" name="haslo" required>
+					  <input type="password" placeholder="Enter Password" name="psw" required>
 
-					  <button type="submit">Login</button>
+					  <button type="submit" disabled="disabled">Login</button>
 					  <label>
 						<input type="checkbox" checked="checked" name="remember"> Remember me
 					  </label>
@@ -156,9 +90,6 @@ EOT;
 
 					<div class="container" style="background-color:#171717">
 					  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-					  <?php
-						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
-						?>
 					</div>
 				  </form>
 				</div>
@@ -176,7 +107,6 @@ EOT;
 				}
 				</script>
 			<!--KONIEC DODAWANIA-->
-			
 			
 		</div>
   </body>

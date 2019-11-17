@@ -38,6 +38,9 @@
 							echo <<< EOT
 <button id="p3" style="float: right;width: 10%;margin-right:10px;background-color: #e68a00;" onclick="window.location.href = '../phpRegister/logout.php'">Log Out</button>
 EOT;
+							echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
+							unset($_SESSION['blad']);
+							unset($_SESSION['blad2']);
 							}
 							else
 							{
