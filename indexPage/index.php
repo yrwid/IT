@@ -172,15 +172,7 @@ EOT;
 				}
 				</script>
 			<!--KONIEC DODAWANIA-->
-			<?php 
-	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
-	{
-		echo "<p>Witaj ".$_SESSION['login'].'!</a> ]</p>';
-		echo "<p><b>E-mail</b>: ".$_SESSION['email'];
-	
-	}
-   
-?>
+			
 			
 		</div>
   </body>
