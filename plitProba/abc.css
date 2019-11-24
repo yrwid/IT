@@ -5,6 +5,7 @@ body
 	font-size: 20px;
 	margin: 0 !important;
 	background-image: url("../images/bgimage.jpg");
+	//overflow: hidden;
 }
 
 .wrapper
@@ -37,6 +38,48 @@ body
 	text-align: center;
 	border-top: 1px solid #751b1b;
 	border-bottom: 1px solid #751b1b;
+}
+
+.spacex
+{
+	width: 1000px;
+	height: 100px;
+}
+
+#chart
+{
+	margin-top: 20px;
+	margin-left: 100px;
+	width: 700px;
+	height: 400px;
+	float: left;
+}
+
+#bar
+{
+	margin-top: 20px;
+	margin-left: 1300px;
+	width: 700px;
+	height: 400px;
+	//float: left;
+	//background-color: #303030;
+}
+
+.opis1
+{
+	margin-top: 100px;
+	margin-left: 500px;
+	float: left;
+	//background-color: #c34f4f;
+	
+}
+
+.opis2
+{
+	margin-top: 130px;
+	margin-left: 1700px;
+	//background-color: #c34f4f;
+	
 }
 
 .square
