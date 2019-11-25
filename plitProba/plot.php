@@ -1,15 +1,7 @@
 <?php
 
 	session_start();
-	require_once "../phpRegister/connect.php";
-
-	$polaczenie2 = @new mysqli($host, $db_user, $db_password, $db_name);
-	$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 ORDER BY id DESC LIMIT 1");
-	$bmp = $first->fetch_assoc();
-	$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 ORDER BY id DESC LIMIT 1");
-	$dht = $second->fetch_assoc();
-	$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 ORDER BY id DESC LIMIT 1");
-	$mq = $third->fetch_assoc();
+	
 
 ?>
 
@@ -18,14 +10,14 @@
   <head>
      <meta charset="utf-8" />
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	 
+	 <script src="plotly.min.js"></script>
 	 <title>M&M</title>
 	 
 	 <meta name ="description" contenr="Serwis o ciekawych rzeczach itp." />
 	 <meta name="keywords" content="Elektronika , Mikroprocesory,Programowanie ,Gliwice ,Politechnika ,AEI" />
 	 <link rel="shortcut icon" href="../images/Logo_ikona.ico">
 	 
-	 <link href="style.css" rel="stylesheet" type="text/css" />
+	 <link href="abc.css" rel="stylesheet" type="text/css" />
   </head>
  
   <body>
@@ -59,8 +51,6 @@
 <button id="p3" style="float: right;width: 10%;margin-right:10px;background-color: #e68a00;" onclick="window.location.href = '../phpRegister/logout.php'">Log Out</button>
 EOT;
 							echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
-							echo "<button id=\"p5\" onclick=\"document.getElementById('id02').style.display='block'\">Live Data</button>";
-							echo "<button id=\"p6\" onclick=\"window.location.href = '../plitProba/plot.php'\">Charts</button>";
 							unset($_SESSION['blad']);
 							unset($_SESSION['blad2']);
 							}
@@ -74,77 +64,112 @@ EOT;
 			<!-- KONIEC DODAWANIA-->
 			<div class="nav">
 				<ol>
-				  <li><a href="index.php">Main page</a></li>
+				  <li><a href="../indexPage/index.php">Main page</a></li>
 				  <li><a href="../aboutPage/about.php">About us</a></li>
 				  <li><a href="../productPage/prod.php">Our product</a></li>
 				  <li><a href="../softwarePage/soft.php">Software</a></li>
 				  <li><a href="../contactPage/contact.php">Contact us</a></li>
 				</ol>
 			</div>
-			<div class="square">
-			  
-		    
-		      <div class="tile1"> <h3> Our partnerships and sponsors </h3></div>	  
-			  <div style="clear: both;"></div>
 			
-			  <div class="tile2"></div>
-			  <div class="tile3"></div>
-			  <div style="clear: both;"> </div>
-			  
-			  <div class="tile4"></div>
-			  <div class="tile5"></div>
-			  <div style="clear: both;"> </div>
-		    </div>
+			 <div id="chart"></div> 
 			
+        <script>
+            function getData() {
+                return Math.random();
+            }  
 			
-			<div class="content">
-			    <p>Have you ever wondered about the current
-				parameters of your work room?
-				Or do you want to be sure that you are safe in a place
-				where you spend a good part of your day?
-				With us you are able to achieve each of these things and even more! </p>
-			</div>
+			var layout = {
+						  autosize: false,
+						  width: 1000,
+						  height: 500,
+						  margin: {
+							l: 70,
+							r: 70,
+							b: 70,
+							t: 70,
+							pad: 40
+						  },
+						  paper_bgcolor: '#7f7f7f',
+						  plot_bgcolor: '#c7c7c7'
+						};
+						
+			var data = [
+					  {
+						y: [getData()],
+						type: 'lines'
+					  }
+					  ];
 			
-			<div class="clock" id="MyClockDisplay" onload="showTime()">
-			
-			<script>
-			function showTime(){
-			var date = new Date();
-			var h = date.getHours(); // 0 - 23
-			var m = date.getMinutes(); // 0 - 59
-			var s = date.getSeconds(); // 0 - 59
-			var session = "AM";
-    
-			if(h == 0){
-				h = 12;
-			}
-    
-			if(h > 12){
-				h = h - 12;
-				session = "PM";
-			}
-    
-			h = (h < 10) ? "0" + h : h;
-			m = (m < 10) ? "0" + m : m;
-			s = (s < 10) ? "0" + s : s;
-    
-			var time = h + ":" + m + ":" + s + " " + session;
-			document.getElementById("MyClockDisplay").innerText = time;
-			document.getElementById("MyClockDisplay").textContent = time;
-    
-			setTimeout(showTime, 1000);
-    
-		}
+            Plotly.plot('chart',data,layout);//[{
+               // y:[getData()],
+               // type:'line'
+           // }]);
+            
+            var cnt = 0;
+            setInterval(function(){
+                Plotly.extendTraces('chart',{ y:[[getData()]]}, [0]);
+                cnt++;
+                if(cnt > 100) {
+                    Plotly.relayout('chart',{
+                        xaxis: {
+                            range: [cnt-100,cnt]
+                        }
+                    });
+                }
+            },1000);
+        </script>
+		
+		 <div id="bar"></div> 
+         <div class="opis1"><h1>Dynamic plot !<h1/> </div>	
+		 
+		 <div class="opis2"><h1>Static plot !<h1/> </div>		 
+		<script>
+				var trace1 = {
+					x: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+				    y: [8.0, 8.0, 12.0, 12.0, 13.0, 20.0, 21.0],
+				    type: 'bar',
+				    text: ['4.17 below the mean', '4.17 below the mean', '0.17 below the mean', '0.17 below the mean', '0.83 above the mean', '7.83 above the mean'],
+				    marker: {
+					color: 'rgb(142,124,195)'
+				  }
+				};
 
-		showTime();
+				var data = [trace1];
+
+				var layout = {
+				  title: 'Avarage temperature',
+				  font:{
+					family: 'Raleway, sans-serif'
+				  },
+				  showlegend: false,
+				  xaxis: {
+					tickangle: -45
+				  },
+				  yaxis: {
+					zeroline: false,
+					gridwidth: 2
+				  },
+				  bargap :0.05,
+				   autosize: false,
+						  width: 1000,
+						  height: 500,
+						  margin: {
+							l: 70,
+							r: 70,
+							b: 70,
+							t: 70,
+							pad: 40
+						  },
+				};
+				Plotly.newPlot('bar', data, layout);
 		</script>
-		</div>
 			
 			
 			<div class="socials"><a style="text-decoration:none; color:#096506;"  href='https://329elearning.aei.polsl.pl/tiwordpress2019/s121/'  >IT Blog</a></div> 
 
               			
-			</div>
+			
 			
 			<!--TU DODAŁEM-->
 				<!-- The Modal -->
@@ -172,43 +197,6 @@ EOT;
 					</div>
 				  </form>
 				</div>
-				
-				<div id="id02" class="modal">
-				  <!-- Modal Content -->
-				  <form class="modal-content animate">
-					<div class="container" style="background-color:#292929">
-					<h3 style = "font-size:60px"><b>Here is your data:</b></h3>
-					<div class="SMdata">
-					<ul>
-					  <li>Temperature: <?php
-						echo $bmp['temperature_bmp']."<br>";
-					  ?> </li>
-					  <li>Humidity: <?php
-						echo $dht['humidity']."<br>";
-					  ?></li>
-					  <li>Atmospheric pressure: <?php
-						echo $bmp['humidity_bmp']."<br>";
-					  ?> </li>
-					  <li>PPM: <?php
-						echo $mq['ppm']."<br>";
-					  ?>  </li>
-					
-					</ul>
-					<p style="font-size:25px";>Time: <?php
-						echo $mq['date']."<br>";
-					  ?>  </p>
-					</div>
-					 
-					</div>
-
-					<div class="container" style="background-color:#171717">
-					  <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Close</button>
-					  <?php
-						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
-						?>
-					</div>
-				  </form>
-				</div>
 
 				<!-- tutaj javascript jak klikniesz poza obszar logowania to Cię przenosi -->
 				<script> 
@@ -219,14 +207,6 @@ EOT;
 				window.onclick = function(event) {
 				  if (event.target == modal) {
 					modal.style.display = "none";
-				  }
-				}
-				var modal2 = document.getElementById('id02');
-
-				// When the user clicks anywhere outside of the modal, close it
-				window.onclick = function(event) {
-				  if (event.target == modal2) {
-					modal2.style.display = "none";
 				  }
 				}
 				</script>
