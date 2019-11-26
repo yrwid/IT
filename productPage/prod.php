@@ -1,6 +1,15 @@
 <?php
 
 	session_start();
+	require_once "../phpRegister/connect.php";
+
+	$polaczenie2 = @new mysqli($host, $db_user, $db_password, $db_name);
+	$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 ORDER BY id DESC LIMIT 1");
+	$bmp = $first->fetch_assoc();
+	$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 ORDER BY id DESC LIMIT 1");
+	$dht = $second->fetch_assoc();
+	$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 ORDER BY id DESC LIMIT 1");
+	$mq = $third->fetch_assoc();					
 	
 
 ?>
@@ -40,6 +49,8 @@
 <button id="p3" style="float: right;width: 10%;margin-right:10px;background-color: #e68a00;" onclick="window.location.href = '../phpRegister/logout.php'">Log Out</button>
 EOT;
 							echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
+							echo "<button id=\"p5\" onclick=\"document.getElementById('id02').style.display='block'\">Live Data</button>";
+							echo "<button id=\"p6\" onclick=\"window.location.href = '../plitProba/plot.php'\">Charts</button>";
 							unset($_SESSION['blad']);
 							unset($_SESSION['blad2']);
 							}
@@ -103,6 +114,43 @@ EOT;
 					</div>
 				  </form>
 				</div>
+				<div id="id02" class="modal">
+				  <!-- Modal Content -->
+				  <form class="modal-content animate">
+					<div class="container" style="background-color:#292929">
+					<h3 style = "font-size:60px"><b>Here is your data:</b></h3>
+					<div class="SMdata">
+					<ul>
+					  <li>Temperature: <?php
+						echo $bmp['temperature_bmp']."<br>";
+					  ?> </li>
+					  <li>Humidity: <?php
+						echo $dht['humidity']."<br>";
+					  ?></li>
+					  <li>Atmospheric pressure: <?php
+						echo $bmp['humidity_bmp']."<br>";
+					  ?> </li>
+					  <li>PPM: <?php
+						echo $mq['ppm']."<br>";
+					  ?>  </li>
+					
+					</ul>
+					<p style="font-size:25px";>Time: <?php
+						echo $mq['date']."<br>";
+					  ?>  </p>
+					</div>
+					 
+					</div>
+
+					<div class="container" style="background-color:#171717">
+					  <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Close</button>
+					  <?php
+						if(isset($_SESSION['blad']))	echo $_SESSION['blad'];
+						?>
+					</div>
+				  </form>
+				</div>
+
 
 				<!-- tutaj javascript jak klikniesz poza obszar logowania to Cię przenosi -->
 				<script> 
@@ -113,6 +161,13 @@ EOT;
 				window.onclick = function(event) {
 				  if (event.target == modal) {
 					modal.style.display = "none";
+				  }
+				}
+				var modal2 = document.getElementById('id02');
+
+				window.onclick = function(event) {
+				  if (event.target == modal2) {
+					modal2.style.display = "none";
 				  }
 				}
 				</script>
