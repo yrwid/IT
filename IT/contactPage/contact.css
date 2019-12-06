@@ -1,0 +1,23 @@
+.picture_contact
+{
+	margin-left: 1000px;
+	margin-top: 50px;
+	height: 400px;
+	width: 700px;
+
+	text-align: center;
+	background-image: url("../images/contactUs.png");
+}
+
+
+
+.content{
+	margin-top: 120px;
+	width: 800px;
+	float: left;
+	height: 400px;
+	margin: 50px;
+	text-align: center;
+	background-color: #00000f;
+	background-image: url("../images/bg11.png");
+}

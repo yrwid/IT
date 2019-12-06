@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+  <head>
+     <meta charset="utf-8" />
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	 
+	 <title>M&M</title>
+	 
+	 <meta name ="description" contenr="Serwis o ciekawych rzeczach itp." />
+	 <meta name="keywords" content="Elektronika , Mikroprocesory,Programowanie ,Gliwice ,Politechnika ,AEI" />
+	  <link rel="shortcut icon" href="../images/Logo_ikona.ico">
+	 
+	 <link href="../indexPage/style.css" rel="stylesheet" type="text/css" />
+	 <link href="style_register.css" rel="stylesheet" type="text/css" />
+  </head>
+ 
+  <body>
+  <div class="form">
+		  <form action="../indexPage/index.html" style="border:1px solid #ccc">
+		  <div class="container">
+			<h1>Sign Up</h1>
+			<p>Please fill in this form to create an account.</p>
+			<hr>
+			
+			<label for="login"><b>Login</b></label>
+			<br>
+			<input type="text" placeholder="Enter Login" name="login" required>
+			<br>
+			<label for="email"><b>Email</b></label>
+			<br>
+			<input type="text" placeholder="Enter Email" name="email" required>
+			<br>
+			<label for="psw"><b>Password</b></label>
+			<br>
+			<input type="password" placeholder="Enter Password" name="psw" required id="password">
+			<br>
+			<label for="psw-repeat"><b>Repeat Password</b></label>
+			<br>
+			<input type="password" placeholder="Repeat Password" name="psw-repeat" required id="password_confirm" oninput="check(this)">
+			<br>
+			<!--<p>By creating an account you agree to our <a href="terms.html" style="color:dodgerblue">Terms & Privacy</a>.</p>-->
+
+			<div class="clearfix">
+			  <button onclick="window.location.href = '../indexPage/index.html';"class="cancelbtn">Cancel</button>
+			  <button type="submit" class="signupbtn">Sign Up</button>
+			</div>
+			<script language='javascript' type='text/javascript'>
+			function check(input) {
+				if (input.value != document.getElementById('password').value) {
+					input.setCustomValidity('Password Must be Matching.');
+				} else {
+					// input is valid -- reset the error message
+					input.setCustomValidity('');
+				}
+			}
+			</script>
+		  </div>
+		</form>
+	  </div>
+  </body>
+</html>
