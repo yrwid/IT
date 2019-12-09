@@ -60,7 +60,8 @@
 EOT;
 							echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
 							echo "<button id=\"p5\" onclick=\"document.getElementById('id02').style.display='block'\">Live Data</button>";
-							echo "<button id=\"p6\" onclick=\"window.location.href = '../plitProba/plot.php'\">Charts</button>";
+							echo "<button id=\"p6\" onclick=\"window.location.href = '../plotPage/plot.php'\">Charts</button>";
+							echo "<button id=\"p7\" onclick=\"window.location.href = '../controlPage/control.php'\">Control</button>";
 							unset($_SESSION['blad']);
 							unset($_SESSION['blad2']);
 							}
@@ -181,16 +182,16 @@ EOT;
 					<div class="SMdata">
 					<ul>
 					  <li>Temperature: <?php
-						echo $bmp['temperature_bmp']."<br>";
+						echo $bmp['temperature_bmp']." [°C]<br>";
 					  ?> </li>
 					  <li>Humidity: <?php
-						echo $dht['humidity']."<br>";
+						echo $dht['humidity']." [%]<br>";
 					  ?></li>
 					  <li>Atmospheric pressure: <?php
-						echo $bmp['humidity_bmp']."<br>";
+						echo $bmp['humidity_bmp']." [hPa]<br>";
 					  ?> </li>
 					  <li>PPM: <?php
-						echo $mq['ppm']."<br>";
+						echo $mq['ppm']." [ppm]<br>";
 					  ?>  </li>
 					
 					</ul>
@@ -214,18 +215,11 @@ EOT;
 				<script> 
 				// Get the modal
 				var modal = document.getElementById('id01');
-
-				// When the user clicks anywhere outside of the modal, close it
-				window.onclick = function(event) {
-				  if (event.target == modal) {
-					modal.style.display = "none";
-				  }
-				}
 				var modal2 = document.getElementById('id02');
-
 				// When the user clicks anywhere outside of the modal, close it
 				window.onclick = function(event) {
-				  if (event.target == modal2) {
+				  if (event.target == modal || event.target == modal2) {
+					modal.style.display = "none";
 					modal2.style.display = "none";
 				  }
 				}

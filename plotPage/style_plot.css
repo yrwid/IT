@@ -1,10 +1,10 @@
 body
 {
 	//background-color: #303030;
-	color: #ffffff;
+	//color: #ffffff;
 	font-size: 20px;
 	margin: 0 !important;
-	background-image: url("../images/bgimage.jpg");
+	//background-image: url("../images/bgimage.jpg");
 }
 
 .wrapper
@@ -91,34 +91,6 @@ body
 	text-align: center;
 } 
 
-.clock 
-{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    color: #ff0000;
-    font-size: 60px;
-    font-family: Orbitron;
-    letter-spacing: 7px;
-}
-
-#MyClockDisplay
-{
-	position: absolute;
-    top: 65%;
-    left: 60%;<!-- bylo 65 -->
-    transform: translateX(-50%) translateY(-50%);
-    color: #a35700;
-    font-size: 90px;
-    font-family: Orbitron;
-	font-weight: bold;
-    letter-spacing: 7px;
-	background-color:rgb(0,0,0,0.8);
-	//border: 8px solid white;
-    border-radius: 50px;
-	margin-top: 30px;
-}
 
 
 
@@ -133,36 +105,9 @@ body
 	text-align: center;
 } 
 
-.content{
-	 font-style: italic;
-	width: 1000px;
-	height: 230px;
-	margin-left: 700px;
-	//margin-top: 10px;
-	//text-align: justify;
-	text-align: center;
-	font-size: 40px;
-	//background-color: #262626;
-	//padding-top: 100px;
-}
 
-.socials
-{
-	//margin-top: 240px;
-	position: absolute;
-	bottom: 5px;
-	width: 100%;
-	height: 70px;
-	font-size: 40px;
-	text-align: center;
-	background-color: #292929;
-}
 
-.socials:hover
-{
-	background-color: #222222;
-	
-}
+
 
 .footer
 {
@@ -171,60 +116,26 @@ body
 	text-align: center;
 }
 
-ol
-{
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
-	font-size: 18px;
-	height: 35px;
-	line-height: 200%;
-	display: inline-block;
-}
-
-ol a
-{
-	color: #ffffff;
-	text-decoration: none;
-	display: block;
-}
-
-ol > li
-{
-	float: left;
-	width: 150px;
-	height: 40px;
-	border-right: 1px dashed #751b1b;
-	
-}
-
-ol> li:first-child
-{
-	float: left;
-	width: 150px;
-	height: 40px;
-	border-right: 1px dashed #751b1b; 
-	border-left: 1px dashed #751b1b; 
-}
-
-ol > li:hover
-{
-    background-color: #8a1f5e; 
-	
-}
-
 /*moje*/
 
 form {
   border: 3px solid #f1f1f1;
 }
 input[type=text], input[type=password] {
-  width: 100%;
+  width: 40%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+}
+input[type=date]{
+  font-family: 'PT Sans', sans-serif;
+  //font-size: 30px;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 3rem;
+  float: left;
 }
 
 button {
@@ -234,11 +145,28 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 40%;
 }
 
 button:hover {
   opacity: 0.8;
+}
+#p_button{
+	width: 32%;
+	height: 5rem;
+	display: inline-block;
+	float:left;
+	font-size: 3rem;
+	margin-left:10px;
+	margin-top:11px
+}
+#back_button{
+	width: 32%;
+	height: 5rem;
+	display: inline-block;
+	float:left;
+	font-size: 3rem;
+	margin-left:10px;
 }
 #p1{
   float: right;
@@ -296,20 +224,6 @@ button:hover {
   font-size: 16px;
   border-radius: 50%;
 }
-#p7
-{
- float: left;
- width: 10%;
- margin-left:10px;
- background-color: rgb(168, 176, 65,0.95);
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 50%;
-}
 .SMdata
 {
   font-size: 50px;
@@ -333,6 +247,10 @@ button:hover {
 .cancelbtn {
     width: 100%;
   }
+}
+.signupbtn {
+  float: left;
+  width: 50%;
 }
 
 .modal {

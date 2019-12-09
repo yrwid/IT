@@ -10,6 +10,9 @@
 	$dht = $second->fetch_assoc();
 	$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 ORDER BY id DESC LIMIT 1");
 	$mq = $third->fetch_assoc();
+	$today = mysqli_query($polaczenie2,"SELECT CURDATE() AS today");
+	$today1 = $today->fetch_assoc();
+	
 
 ?>
 
@@ -18,15 +21,14 @@
   <head>
      <meta charset="utf-8" />
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	 
+	 <script src="plotly.min.js"></script>
 	 <title>M&M</title>
 	 
 	 <meta name ="description" contenr="Serwis o ciekawych rzeczach itp." />
 	 <meta name="keywords" content="Elektronika , Mikroprocesory,Programowanie ,Gliwice ,Politechnika ,AEI" />
-	  <link rel="shortcut icon" href="../images/Logo_ikona.ico">
+	 <link rel="shortcut icon" href="../images/Logo_ikona.ico">
 	 
-	 <link href="main_style.css" rel="stylesheet" type="text/css" />
-	 <link href="contact.css" rel="stylesheet" type="text/css" />
+	 <link href="abc.css" rel="stylesheet" type="text/css" />
   </head>
  
   <body>
@@ -38,7 +40,19 @@
  						 <span style="color: #025D45">Company</span> 
 						<div style="clear:both;"></div>
 				</div>
+				<?php /*
+	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
+	{
+		//echo "<p>Witaj ".$_SESSION['login'].'!</p>';
+		//echo "<p><b>E-mail</b>: ".$_SESSION['email'];
+		//echo "<p>Hello, <a href=\"../profilePage/profile.php\">".$_SESSION['login'].'</a></p>';
+		//echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
+	
+	}*/
+   
+?>
 			</div>
+			
 			
 			<!-- TU DODAŁEM-->
 			<?php
@@ -49,7 +63,6 @@
 EOT;
 							echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
 							echo "<button id=\"p5\" onclick=\"document.getElementById('id02').style.display='block'\">Live Data</button>";
-							echo "<button id=\"p6\" onclick=\"window.location.href = '../plotPage/plot.php'\">Charts</button>";
 							unset($_SESSION['blad']);
 							unset($_SESSION['blad2']);
 							}
@@ -59,32 +72,61 @@ EOT;
 								echo"<button id=\"p2\" onclick=\"window.location.href = '../phpRegister/register.php'\">Sign Up</button>";
 							}
 						?>
+						
 			<!-- KONIEC DODAWANIA-->
-			
 			<div class="nav">
 				<ol>
 				  <li><a href="../indexPage/index.php">Main page</a></li>
 				  <li><a href="../aboutPage/about.php">About us</a></li>
 				  <li><a href="../productPage/prod.php">Our product</a></li>
 				  <li><a href="../softwarePage/soft.php">Software</a></li>
-				  <li><a href="contact.php">Contact us</a></li>
+				  <li><a href="../contactPage/contact.php">Contact us</a></li>
 				</ol>
 			</div>
-		
-		   <div class="content">
-							<h1>  Tel1: 503 888 999  </h1>
-							<h1>  Tel2: 101 010 202  </h1>
-							<h1>  Fax: 383838221954  </h1>
-							<h1>  Email: MMcompany@example.com  </h1>
-			</div>
-			
-			
-			<div class="picture_contact"></div>
-			
+					 
+		<?php 
+			if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
+				{
+					
+					echo "<h1 style = \"text-align: center;\">Hey, <span style =\"color: #f5c001\">".$_SESSION['login'].'</span> here are your charts!</h1>';
+					//DODAĆ ŻE PRZENOSI DO DZISIEJSZEJ DATY !!!!!!!
+					echo "<div class=\"box-2\"><div onclick=\"window.location.href = 'temp_bar.php'\" class=\"btn btn-two\"><span>TEMPERATURE <br>(COLUMN)</span></div></a></div>";
+					echo "<div class=\"box-2\"><div onclick=\"window.location.href = 'temp_line.php?data=".$today1['today']."'\" class=\"btn btn-two\"><span>TEMPERATURE <br>(LINE)</span></div></div>";
+					echo "<div class=\"box-2\"><div onclick=\"window.location.href = 'hum_bar.php'\" class=\"btn btn-two\"><span>HUMIDITY <br>(COLUMN)</span></div></div>";
+					echo "<div class=\"box-2\"><div onclick=\"window.location.href = 'hum_line.php?data=".$today1['today']."'\" class=\"btn btn-two\"><span>HUMIDITY <br>(LINE)</span></div></div>";
+					echo "<div class=\"box-2\"><div onclick=\"window.location.href = 'pressure_bar.php'\" class=\"btn btn-two\"><span>ATMOSPHERIC PRESSURE <br>(COLUMN)</span></div></div>";
+					echo "<div class=\"box-2\"><div onclick=\"window.location.href = 'pressure_line.php?data=".$today1['today']."'\" class=\"btn btn-two\"><span>ATMOSPHERIC PRESSURE <br>(LINE)</span></div></div>";
+					echo "<div class=\"box-2\"><div onclick=\"window.location.href = 'ppm_bar.php'\" class=\"btn btn-two\"><span>CO CONCENTRATION <br>(COLUMN)</span></div></div>";
+					echo "<div class=\"box-2\"><div onclick=\"window.location.href = 'ppm_line.php?data=".$today1['today']."'\" class=\"btn btn-two\"><span>CO CONCENTRATION <br>(LINE)</span></div></div>";
+					/*echo "<p style = \"font-size:40px\"><b>Here is your data:</b></p>";
+					echo "<p><b>Nickname: &emsp;<span style=\"color:#949494\">".$_SESSION['login'].'</span></p>';
+					echo "<p><b>E-mail:</b> &emsp;<span style=\"color:#949494\">".$_SESSION['email'].'</span></p>';
+					//echo "<p>First name: &emsp;".$_SESSION['fName'].'<button style=\"float: right;width: 10%;margin-right:10px;background-color: #e68a00;\">Change</button></p>';
+					echo "<p><b>First name</b>: &emsp;".$_SESSION['fName'].'';
+					//echo "<button style=\"float: right;width: 10%;margin-right:10px;background-color: #e68a00;\">Change</button></p>";
+					echo "<button id=\"p4\" onclick=\"document.getElementById('id02').style.display='block'\">Change First name</button></p>";
+					echo "<p><b>Last name:</b> &emsp;".$_SESSION['lName'].'';
+					echo "<button id=\"p4\" onclick=\"document.getElementById('id03').style.display='block'\">Change Last name</button></p>";
+					echo "<p><b>Country:</b> &emsp;".$_SESSION['country'].'';
+					echo "<button id=\"p4\" onclick=\"document.getElementById('id04').style.display='block'\">Change Country</button></p>";
+					echo "<p><b>Town:</b> &emsp;".$_SESSION['town'].'';
+					echo "<button id=\"p4\" onclick=\"document.getElementById('id05').style.display='block'\">Change Town</button></p>";
+					echo "<p><b><span style=\"color:#949494;font-size:30px;\">If you want to change password:</span></b> &emsp;";
+					echo "<button id=\"p4\" style=\"background-color:#ff0000;\" onclick=\"document.getElementById('id06').style.display='block' \">Change password</button>";if(isset($_SESSION['blad2'])) echo $_SESSION['blad2'];echo"</p>";
+					echo "<hr></hr>";*/
+					
 				
+				
+				
+				}
+	   
+	?>
 			
 			
-			<div class="socials"><a style="text-decoration:none; color:#096506;"  href='https://329elearning.aei.polsl.pl/tiwordpress2019/s121/'  >IT Blog</a></div>
+			<div class="socials"><a style="text-decoration:none; color:#096506;"  href='https://329elearning.aei.polsl.pl/tiwordpress2019/s121/'  >IT Blog</a></div> 
+
+              			
+			
 			
 			<!--TU DODAŁEM-->
 				<!-- The Modal -->
@@ -164,6 +206,7 @@ EOT;
 				}
 				</script>
 			<!--KONIEC DODAWANIA-->
+			
 			
 		</div>
   </body>

@@ -93,7 +93,7 @@
 <button id="p3" style="float: right;width: 10%;margin-right:10px;background-color: #e68a00;" onclick="window.location.href = '../phpRegister/logout.php'">Log Out</button>
 EOT;
 							echo "<button id=\"p7\" onclick=\"document.getElementById('id07').style.display='block'\">Live Data</button>";
-							echo "<button id=\"p8\" onclick=\"window.location.href = '../plitProba/plot.php'\">Charts</button>";
+							echo "<button id=\"p8\" onclick=\"window.location.href = '../plotPage/plot.php'\">Charts</button>";
 							}
 							else
 							{

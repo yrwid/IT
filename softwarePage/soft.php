@@ -49,7 +49,7 @@
 EOT;
 							echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
 							echo "<button id=\"p5\" onclick=\"document.getElementById('id02').style.display='block'\">Live Data</button>";
-							echo "<button id=\"p6\" onclick=\"window.location.href = '../plitProba/plot.php'\">Charts</button>";
+							echo "<button id=\"p6\" onclick=\"window.location.href = '../plotPage/plot.php'\">Charts</button>";
 							unset($_SESSION['blad']);
 							unset($_SESSION['blad2']);
 							}
@@ -155,17 +155,11 @@ EOT;
 				<script> 
 				// Get the modal
 				var modal = document.getElementById('id01');
-
+				var modal2 = document.getElementById('id02');
 				// When the user clicks anywhere outside of the modal, close it
 				window.onclick = function(event) {
-				  if (event.target == modal) {
+				  if (event.target == modal || event.target == modal2) {
 					modal.style.display = "none";
-				  }
-				}
-				var modal2 = document.getElementById('id02');
-
-				window.onclick = function(event) {
-				  if (event.target == modal2) {
 					modal2.style.display = "none";
 				  }
 				}
