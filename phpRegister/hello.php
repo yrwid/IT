@@ -40,7 +40,7 @@
 <body>
 	<div class="wrapper">
 	
-	<p style="text-align:center;font-size:300%;">Thank you for creating an account!<br> You can log in to your account!<br /><br /></p>
+	<p style="text-align:center;font-size:300%;">Thank you for creating an account!<br> Now, you can log in!<br /><br /></p>
 	
 	<button onclick="window.location.href = '../indexPage/index.php'"><p style="font-size:200%">Return to main page and log in!</p></button>
 	<br /><br />

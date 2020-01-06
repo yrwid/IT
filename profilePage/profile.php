@@ -94,6 +94,8 @@
 EOT;
 							echo "<button id=\"p7\" onclick=\"document.getElementById('id07').style.display='block'\">Live Data</button>";
 							echo "<button id=\"p8\" onclick=\"window.location.href = '../plotPage/plot.php'\">Charts</button>";
+							echo "<button id=\"p9\" onclick=\"window.location.href = '../controlPage/control.php'\">Control</button>";
+							echo "<button id=\"p10\" onclick=\"window.location.href = '../controlPage/searching.php?data=&town='\">Search</button>";
 							}
 							else
 							{
@@ -133,6 +135,14 @@ EOT;
 					echo "<button id=\"p4\" onclick=\"document.getElementById('id04').style.display='block'\">Change Country</button></p>";
 					echo "<p><b>Town:</b> &emsp;".$_SESSION['town'].'';
 					echo "<button id=\"p4\" onclick=\"document.getElementById('id05').style.display='block'\">Change Town</button></p>";
+					if($_SESSION['access']==0){
+					echo "<p><b>Accessibility:&emsp;<font color=\"red\">FALSE</font></b> &emsp;";
+					echo "<button id=\"p4\" onclick=\"window.location.href = 'AccessChange.php?access=1'\">Change Accessibility</button></p>";
+					}
+					if($_SESSION['access']==1){
+					echo "<p><b>Accessibility:&emsp;<font color=\"green\">TRUE</font></b> &emsp;";
+					echo "<button id=\"p4\" onclick=\"window.location.href = 'AccessChange.php?access=0'\">Change Accessibility</button></p>";
+					}
 					echo "<p><b><span style=\"color:#949494;font-size:30px;\">If you want to change password:</span></b> &emsp;";
 					echo "<button id=\"p4\" style=\"background-color:#ff0000;\" onclick=\"document.getElementById('id06').style.display='block' \">Change password</button>";if(isset($_SESSION['blad2'])) echo $_SESSION['blad2'];echo"</p>";
 					echo "<hr></hr>";
@@ -311,6 +321,7 @@ https://twitter.com/marco_bf
 					</div>
 				  </form>
 			</div>
+			
 			<!-- Live Data button -->
 				<div id="id07" class="modal">
 				  <!-- Modal Content -->

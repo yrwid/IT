@@ -43,6 +43,7 @@
 				$_SESSION['lName'] = $wiersz['lName'];
 				$_SESSION['country'] = $wiersz['country'];
 				$_SESSION['town'] = $wiersz['town'];
+				$_SESSION['access'] = $wiersz['access'];
 				
 				unset($_SESSION['blad']);
 				$rezultat->free_result();

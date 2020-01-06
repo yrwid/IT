@@ -216,8 +216,22 @@ ol > li:hover
 /*moje*/
 
 form {
-  border: 3px solid #f1f1f1;
+  border: 0px solid #f1f1f1;
 }
+.form {
+		margin: 0 auto;
+		width: 1200px;
+	}
+.form label{
+		display: inline-block;
+		text-align: right;
+		float: left;
+	}
+.form input{
+		display: inline-block;
+		text-align: left;
+		float: right;
+	}
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -321,7 +335,7 @@ button:hover {
 }
 
 .container {
-  padding: 16px;
+  padding: 4px 16px 16px 16px;
 }
 
 @media screen and (max-width: 3000px) {

@@ -50,6 +50,8 @@ EOT;
 							echo "<button id=\"p4\" onclick=\"window.location.href = '../profilePage/profile.php'\">".$_SESSION['login'].'</button>';
 							echo "<button id=\"p5\" onclick=\"document.getElementById('id02').style.display='block'\">Live Data</button>";
 							echo "<button id=\"p6\" onclick=\"window.location.href = '../plotPage/plot.php'\">Charts</button>";
+							echo "<button id=\"p7\" onclick=\"window.location.href = '../controlPage/control.php'\">Control</button>";
+							echo "<button id=\"p8\" onclick=\"window.location.href = '../controlPage/searching.php?data=&town='\">Search</button>";
 							unset($_SESSION['blad']);
 							unset($_SESSION['blad2']);
 							}

@@ -62,6 +62,7 @@ EOT;
 							echo "<button id=\"p5\" onclick=\"document.getElementById('id02').style.display='block'\">Live Data</button>";
 							echo "<button id=\"p6\" onclick=\"window.location.href = '../plotPage/plot.php'\">Charts</button>";
 							echo "<button id=\"p7\" onclick=\"window.location.href = '../controlPage/control.php'\">Control</button>";
+							echo "<button id=\"p8\" onclick=\"window.location.href = '../controlPage/searching.php?data=&town='\">Search</button>";
 							unset($_SESSION['blad']);
 							unset($_SESSION['blad2']);
 							}
@@ -142,9 +143,19 @@ EOT;
 		</div>
 			
 			
-			<div class="socials"><a style="text-decoration:none; color:#096506;"  href='https://329elearning.aei.polsl.pl/tiwordpress2019/s121/'  >IT Blog</a></div> 
-
-              			
+			<div class="socials"><a style="text-decoration:none; color:#096506;"  href='https://329elearning.aei.polsl.pl/tiwordpress2019/s121/'  >IT Blog</a> <!-- tu byl </div> - dodac -->
+			<?php
+						/*	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
+							{
+								//echo"halo".$_SESSION['login'].'';
+								//echo "<button onclick=\"window.location.href =\"../controlPage/searching.php?data=".$_SESSION['login'].'\">Control</button>';
+								
+								//echo "<button onclick=\"window.location.href =\"../controlPage/searching.php\">Control</button>";
+								echo"<button id=\"back_button2\" onclick=\"window.location.href = '../controlPage/searching.php?data=aaaa';\">Cheac data!</button>";
+	
+							}*/
+			?>
+              			</div> 
 			</div>
 			
 			<!--TU DODAŁEM-->
@@ -228,5 +239,6 @@ EOT;
 			
 			
 		</div>
+	
   </body>
 </html>

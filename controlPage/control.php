@@ -47,8 +47,8 @@
 				// wys³anie HTTP GET request do adresu IP z parametrem "pin" i wartoœci¹ "p"
 				//$.get("http://192.168.4.1:80/", {pin:p}); // wykonanie polecenia
 				//$.get("http://192.168.1.33:81/", {pin:p}); // wykonanie polecenia STARE ESP
-				$.get("http://192.168.43.248:81/", {pin:p}); // wykonanie polecenia STARE ESP - TEL
-				//$.get("http://192.168.43.241:81/", {pin:p});//NOWE ESP
+				//$.get("http://192.168.43.248:81/", {pin:p}); // wykonanie polecenia STARE ESP - TEL
+				$.get("http://192.168.43.241:81/", {pin:p});//NOWE ESP
 				//$.get("http://192.168.1.42:81/", {pin:p}); //FUN_EXT
 				
 				
