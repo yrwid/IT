@@ -3,37 +3,40 @@
  session_start();
 	require_once "../phpRegister/connect.php";
 
+	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
+	{
+	$id = $_SESSION['id'];
 	$polaczenie2 = @new mysqli($host, $db_user, $db_password, $db_name);
-	$first = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 14 DAY)");
+	$first = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE user_id = '$id' AND DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)");
 	$first1 = $first->fetch_assoc();
-	$second = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 15 DAY)");
+	$second = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE user_id = '$id' AND DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 2 DAY)");
 	$second1 = $second->fetch_assoc();
-	$third = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 16 DAY)");
+	$third = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE user_id = '$id' AND DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 3 DAY)");
 	$third1 = $third->fetch_assoc();
-	$four = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 17 DAY)");
+	$four = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE user_id = '$id' AND DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 4 DAY)");
 	$four1 = $four->fetch_assoc();
-	$five = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 18 DAY)");
+	$five = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE user_id = '$id' AND DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 5 DAY)");
 	$five1 = $five->fetch_assoc();
-	$six = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 19 DAY)");
+	$six = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE user_id = '$id' AND DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
 	$six1 = $six->fetch_assoc();
-	$seven = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 20 DAY)");
+	$seven = mysqli_query($polaczenie2,"SELECT avg(ppm) AS ppm, DATE(mq7.date) AS date FROM mq7 WHERE user_id = '$id' AND DATE(mq7.date) = DATE_SUB(CURDATE(), INTERVAL 7 DAY)");
 	$seven1 = $seven->fetch_assoc();
- 
+	}
 $dataPoints = array( 
-	/*array("y" => $seven1['ppm'], "label" => $seven1['date'] ),
+	array("y" => $seven1['ppm'], "label" => $seven1['date'] ),
 	array("y" => $six1['ppm'], "label" => $six1['date'] ),
 	array("y" => $five1['ppm'], "label" => $five1['date'] ),
 	array("y" => $four1['ppm'], "label" => $four1['date'] ),
 	array("y" => $third1['ppm'], "label" => $third1['date'] ),
 	array("y" => $second1['ppm'], "label" => $second1['date'] ),
-	array("y" => $first1['ppm'], "label" => $first1['date'] )*/
-	array("y" => $third1['ppm'], "label" => $third1['date'] ),
-	array("y" => $third1['ppm'], "label" => $third1['date'] ),
-	array("y" => $first1['ppm'], "label" => $first1['date'] ),
-	array("y" => $third1['ppm'], "label" => $third1['date'] ),
-	array("y" => $first1['ppm'], "label" => $first1['date'] ),
-	array("y" => $third1['ppm'], "label" => $third1['date'] ),
 	array("y" => $first1['ppm'], "label" => $first1['date'] )
+	/*array("y" => $third1['ppm'], "label" => $third1['date'] ),
+	array("y" => $third1['ppm'], "label" => $third1['date'] ),
+	array("y" => $first1['ppm'], "label" => $first1['date'] ),
+	array("y" => $third1['ppm'], "label" => $third1['date'] ),
+	array("y" => $first1['ppm'], "label" => $first1['date'] ),
+	array("y" => $third1['ppm'], "label" => $third1['date'] ),
+	array("y" => $first1['ppm'], "label" => $first1['date'] )*/
 );
  
 ?>

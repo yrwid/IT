@@ -20,11 +20,11 @@
 			if($sprawdzenie2['access'] == 1)
 			{
 			$access = true;
-			$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 ORDER BY id DESC LIMIT 1"); // WHERE user_id = (SELECT id from users where login = '$data_get')";
+			$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 WHERE user_id = (SELECT id from users where login = '$data_get') AND date=(Select max(date) from bmp180 where user_id = (SELECT id from users where login = '$data_get'))"); // WHERE user_id = (SELECT id from users where login = '$data_get')";
 			$bmp = $first->fetch_assoc();
-			$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 ORDER BY id DESC LIMIT 1");
+			$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 WHERE user_id = (SELECT id from users where login = '$data_get') AND date=(Select max(date) from dht11 where user_id = (SELECT id from users where login = '$data_get'))");
 			$dht = $second->fetch_assoc();
-			$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 ORDER BY id DESC LIMIT 1");
+			$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 WHERE user_id = (SELECT id from users where login = '$data_get') AND date=(Select max(date) from mq7 where user_id = (SELECT id from users where login = '$data_get'))");
 			$mq = $third->fetch_assoc();
 			$dane_nick = true;
 			$dane_town = false;
@@ -40,17 +40,17 @@
 			$data_get = $_GET['town'];
 			$polaczenie2 = @new mysqli($host, $db_user, $db_password, $db_name);
 			//$first = mysqli_query($polaczenie2,"SELECT temperature_bmp AS temp, DATE_FORMAT(bmp180.date,'%T') AS date, DATE(bmp180.date) AS date_day FROM bmp180 WHERE DATE(bmp180.date) = DATE_SUB(CURDATE(), INTERVAL 11 DAY)");
-			$sprawdzenie = mysqli_query($polaczenie2,"SELECT * FROM users WHERE town = '$data_get'");
+			$sprawdzenie = mysqli_query($polaczenie2,"SELECT * FROM users WHERE town = '$data_get' AND access=1 LIMIT 1");
 			$sprawdzenie2 = $sprawdzenie->fetch_assoc();
 			
 			if($sprawdzenie2['access'] == 1)
 			{
 			$access = true;
-			$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 ORDER BY id DESC LIMIT 1"); // WHERE user_id = (SELECT id from users where login = '$data_get')";
+			$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 WHERE user_id = (SELECT id from users WHERE town = '$data_get' AND access=1 LIMIT 1) AND date=(Select max(date) from bmp180 where user_id = (SELECT id from users WHERE town = '$data_get' AND access=1 LIMIT 1))"); // WHERE user_id = (SELECT id from users where login = '$data_get')";
 			$bmp = $first->fetch_assoc();
-			$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 ORDER BY id DESC LIMIT 1");
+			$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 WHERE user_id = (SELECT id from users WHERE town = '$data_get' AND access=1 LIMIT 1) AND date=(Select max(date) from dht11 where user_id = (SELECT id from users WHERE town = '$data_get' AND access=1 LIMIT 1))");
 			$dht = $second->fetch_assoc();
-			$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 ORDER BY id DESC LIMIT 1");
+			$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 WHERE user_id = (SELECT id from users WHERE town = '$data_get' AND access=1 LIMIT 1) AND date=(Select max(date) from mq7 where user_id = (SELECT id from users WHERE town = '$data_get' AND access=1 LIMIT 1))");
 			$mq = $third->fetch_assoc();
 			$dane_nick = false;
 			$dane_town = true;

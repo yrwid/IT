@@ -4,12 +4,16 @@
 	require_once "../phpRegister/connect.php";
 
 	$polaczenie2 = @new mysqli($host, $db_user, $db_password, $db_name);
-	$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 ORDER BY id DESC LIMIT 1");
+	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
+	{
+	$id = $_SESSION['id'];
+	$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 WHERE user_id = '$id' AND date=(Select max(date) from bmp180 where user_id = '$id')");
 	$bmp = $first->fetch_assoc();
-	$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 ORDER BY id DESC LIMIT 1");
+	$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 WHERE user_id = '$id' AND date=(Select max(date) from dht11 where user_id = '$id')");
 	$dht = $second->fetch_assoc();
-	$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 ORDER BY id DESC LIMIT 1");
-	$mq = $third->fetch_assoc();					
+	$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 WHERE user_id = '$id' AND date=(Select max(date) from mq7 where user_id = '$id')");
+	$mq = $third->fetch_assoc();
+	}					
 	
 
 ?>
@@ -75,9 +79,9 @@ EOT;
 			</div>
 		
 		   <div class="content">
-							<h1>           HDTT04R1 </h1>
+							<h1>           Talking multifunction device </h1>
 			    <p> 
-					our product consists of dedicated devices and a web application that interacts with the device via a wifi interface. The solution provided by our company provides a lot of information regarding home use, e.g. temperature, humidity, atmospheric pressure or carbon monoxide sensor is also equipped with a 0.5 watt speaker designed to inform the user about the current state of a given parameter. All information is currently sent to the website
+					Our product consists of dedicated devices and a web application that interacts with the device via a wifi interface. The solution provided by our company provides a lot of information regarding home use, e.g. temperature, humidity, atmospheric pressure or carbon monoxide sensor is also equipped with a 0.5 watt speaker designed to inform the user about the current state of a given parameter. All information is currently sent to the website
 					where the user can manage to check statistics and charts from the last days. 
 				</p>
 			</div>

@@ -4,64 +4,61 @@
 	
 	if (isset($_POST['email']))
 	{
-		//Udana walidacja? Załóżmy, że tak!
+		//If everything is ok
 		$wszystko_OK=true;
 		
-		//Sprawdź poprawność nickname'a
+		//Check nickname
 		$nick = $_POST['nick'];
 		
-		//Sprawdzenie długości nicka
+		//Check nick length
 		if ((strlen($nick)<3) || (strlen($nick)>20))
 		{
 			$wszystko_OK=false;
-			$_SESSION['e_nick']="Nick musi posiadać od 3 do 20 znaków!";
+			$_SESSION['e_nick']="Nickname must be between 3 and 20 characters!";
 		}
 		
 		if (ctype_alnum($nick)==false)
 		{
 			$wszystko_OK=false;
-			$_SESSION['e_nick']="Nick może składać się tylko z liter i cyfr (bez polskich znaków)";
+			$_SESSION['e_nick']="Nick can only consist of letters and numbers (without Polish characters)";
 		}
 		
-		// Sprawdź poprawność adresu email
+		// Check email
 		$email = $_POST['email'];
 		$emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
 		
 		if ((filter_var($emailB, FILTER_VALIDATE_EMAIL)==false) || ($emailB!=$email))
 		{
 			$wszystko_OK=false;
-			$_SESSION['e_email']="Podaj poprawny adres e-mail!";
+			$_SESSION['e_email']="Please enter a correct email address!";
 		}
 		
-		//Sprawdź poprawność hasła
+		//Validate the password
 		$haslo1 = $_POST['haslo1'];
 		$haslo2 = $_POST['haslo2'];
 		
 		if ((strlen($haslo1)<8) || (strlen($haslo1)>20))
 		{
 			$wszystko_OK=false;
-			$_SESSION['e_haslo']="Hasło musi posiadać od 8 do 20 znaków!";
+			$_SESSION['e_haslo']="Password must have between 8 and 20 characters!";
 		}
 		
 		if ($haslo1!=$haslo2)
 		{
 			$wszystko_OK=false;
-			$_SESSION['e_haslo']="Podane hasła nie są identyczne!";
+			$_SESSION['e_haslo']="Passwords you have entered do not match!";
 		}	
 
 		$haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
 		
-		//Czy zaakceptowano regulamin?
+		//Have the regulations been accepted?
 		if (!isset($_POST['regulamin']))
 		{
 			$wszystko_OK=false;
-			$_SESSION['e_regulamin']="Potwierdź akceptację regulaminu!";
+			$_SESSION['e_regulamin']="Confirm regulations!";
 		}				
 		
-		//Bot or not? Oto jest pytanie!
-			
-		
-		//Zapamiętaj wprowadzone dane
+		//Remember entered data
 		$_SESSION['fr_nick'] = $nick;
 		$_SESSION['fr_email'] = $email;
 		$_SESSION['fr_haslo1'] = $haslo1;
@@ -89,7 +86,7 @@
 				if($ile_takich_maili>0)
 				{
 					$wszystko_OK=false;
-					$_SESSION['e_email']="Istnieje już konto przypisane do tego adresu e-mail!";
+					$_SESSION['e_email']="An account already exists for this email address!";
 				}		
 
 				//Czy nick jest już zarezerwowany?
@@ -101,12 +98,12 @@
 				if($ile_takich_nickow>0)
 				{
 					$wszystko_OK=false;
-					$_SESSION['e_nick']="Istnieje już gracz o takim nicku! Wybierz inny.";
+					$_SESSION['e_nick']="A user with this nickname already exists! Choose another one.";
 				}
 				
 				if ($wszystko_OK==true)
 				{
-					//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
+					//Everything is OK, create new account
 					
 					if ($polaczenie->query("INSERT INTO users VALUES (NULL, '$nick', '$haslo_hash', '$email',NULL,NULL,NULL,NULL,0)"))
 					{
@@ -126,8 +123,8 @@
 		}
 		catch(Exception $e)
 		{
-			echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie!</span>';
-			echo '<br />Informacja developerska: '.$e;
+			echo '<span style="color:red;">Server error! We apologize for the inconvenience and please register at a different time!</span>';
+			echo '<br />Developer Information: '.$e;
 		}
 		
 	}

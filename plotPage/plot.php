@@ -4,12 +4,16 @@
 	require_once "../phpRegister/connect.php";
 
 	$polaczenie2 = @new mysqli($host, $db_user, $db_password, $db_name);
-	$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 ORDER BY id DESC LIMIT 1");
+	if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany']==true))
+	{
+	$id = $_SESSION['id'];
+	$first = mysqli_query($polaczenie2,"SELECT * FROM bmp180 WHERE user_id = '$id' AND date=(Select max(date) from bmp180 where user_id = '$id')");
 	$bmp = $first->fetch_assoc();
-	$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 ORDER BY id DESC LIMIT 1");
+	$second = mysqli_query($polaczenie2,"SELECT * FROM dht11 WHERE user_id = '$id' AND date=(Select max(date) from dht11 where user_id = '$id')");
 	$dht = $second->fetch_assoc();
-	$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 ORDER BY id DESC LIMIT 1");
+	$third = mysqli_query($polaczenie2,"SELECT * FROM mq7 WHERE user_id = '$id' AND date=(Select max(date) from mq7 where user_id = '$id')");
 	$mq = $third->fetch_assoc();
+	}
 	$today = mysqli_query($polaczenie2,"SELECT CURDATE() AS today");
 	$today1 = $today->fetch_assoc();
 	
